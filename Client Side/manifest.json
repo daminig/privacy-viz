@@ -1,0 +1,27 @@
+{
+  "name": "Privacy Visualizer",
+  "description": "Visualize your privacy security.",
+  "version": "1.0",
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "<all_urls>"
+  ],
+
+  "browser_action": {
+    "default_title": "Privacy Visualizer",
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentscript.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "manifest_version": 2
+}
