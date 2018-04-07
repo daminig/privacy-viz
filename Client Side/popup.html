@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<link rel="stylesheet" href="bootstrap.min.css">
 <style>
   
-body {
+/*body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: auto;
   position: relative;
@@ -49,21 +50,70 @@ form {
   text-align: center;
   bottom: 0;
   margin: auto;
+}*/
+
+body {
+  width: 525px;
+}
+
+#title {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 295px;
+}
+
+.information {
+  margin: auto;
+  width: 500px;
+}
+
+.graph {
+  float: left;
+  width: 250px;
+  padding-right: 10px;
+}
+
+text {
+  color: red;
+}
+
+.info {
+  float: left;
+  width: 250px;
+  font-size: .85em;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 30px;
+}
+
+#clear {
+  clear: both;
+}
+
+.bottom {
+  margin-right: auto;
+}
+
+.in-depth {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 150px;
 }
 
 </style>
-<div class="information">
-  <div class="centered">Here is a bunch of text about the graph, explaining what is means and explain 
-    the consequenes of the data collected
-  </div> 
-</div>
-<div class="graph">
-  <form>
-    <label><input type="radio" name="dataset" value="apples" checked> Apples</label>
-    <label><input type="radio" name="dataset" value="oranges"> Oranges</label>
-  </form>
-</div>
-<div class="bottom"> link to more information </div>   
 <script src="d3.v3.min.js"></script>
-<script src="content.js"></script>
-<body></body>
+<body>
+  <div class="jumbotron"><h1 id="title">Privacy Visualizer</h1></div>
+  <div class="information">
+    <div class="graph">
+      <script src="content.js"></script>
+    </div>
+    <div class="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor.
+    </div>
+    <div id="clear"></div>
+  </div>
+  <button type="button" class="btn btn-warning in-depth">In-Depth Analysis</button>  
+</body>
