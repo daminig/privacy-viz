@@ -37,10 +37,6 @@ d3.csv("data.csv", type, function(error, data) {
       .text(function(d) { return d.data.age; });
 });
 
-chrome.cookies.get({url: "www.propublica.org", name:"_cb"}, function(cookie) {
-    console.log(cookie);
-    alert(cookie.name + ' found, value: ' + cookie.value)});
-
 function type(d) {
   d.population = +d.population;
   return d;
