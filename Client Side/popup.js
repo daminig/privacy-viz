@@ -34,3 +34,8 @@ chrome.tabs.query({"active": true, "currentWindow": true}, function(tab) {
         setScores(serverResponse);
     });
 });
+
+chrome.cookies.get({url: "propublica.org", name:"_gid"}, function(cookie) {
+    console.log(cookie);
+	alert(cookie.name + ' found, value: ' + cookie.value)
+});
