@@ -37,6 +37,10 @@ d3.csv("data.csv", type, function(error, data) {
       .text(function(d) { return d.data.age; });
 });
 
+chrome.cookies.getAll({}, function(cookie) {
+    console.log(cookie);
+});
+
 function type(d) {
   d.population = +d.population;
   return d;
