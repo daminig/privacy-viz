@@ -1,3 +1,5 @@
+// Adapted from https://bl.ocks.org/mbostock/3887193
+
 var width = 960 / 2,
     height = 500 / 2,
     radius = Math.min(width, height) / 2;
@@ -11,7 +13,7 @@ var arc = d3.svg.arc()
 
 var pie = d3.layout.pie()
     .sort(null)
-    .value(function(d) { return d.population; });
+    .value(function(d) { return d.visits; });
 
 var svg = d3.select(".graph").append("svg")
     .attr("width", width)
@@ -23,18 +25,19 @@ d3.csv("data.csv", type, function(error, data) {
   //if (error) throw error;
 
   var g = svg.selectAll(".arc")
-      .data(pie([{"age": "google.com", "population": "2704659"}, {"age": "facebook.com", "population": "4499890"}, {"age": "youtube.com", "population": "4499890"}]))
+      .data(pie([{'site': 'https://docs.google.com/', 'visits': 16}, {'site': 'https://www.google.com/', 'visits': 14}, {'site': 'https://github.com/', 'visits': 8}, {'site': 'https://ieorpicnicgroup.slack.com/', 'visits': 5}, {'site': 'https://scholar.google.com/', 'visits': 5}]))
     .enter().append("g")
       .attr("class", "arc");
 
   g.append("path")
       .attr("d", arc)
-      .style("fill", function(d) { return color(d.data.age); });
+      .style("fill", function(d) { return color(d.data.site); });
 
   g.append("text")
       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       .attr("dy", ".35em")
-      .text(function(d) { return d.data.age; });
+      .attr("x", -50)
+      .text(function(d) { return d.data.site; });
 });
 
 chrome.cookies.getAll({}, function(cookie) {
@@ -42,6 +45,6 @@ chrome.cookies.getAll({}, function(cookie) {
 });
 
 function type(d) {
-  d.population = +d.population;
+  d.visits = +d.visits;
   return d;
 }
