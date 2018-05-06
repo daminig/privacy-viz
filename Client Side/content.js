@@ -48,3 +48,51 @@ function type(d) {
   d.visits = +d.visits;
   return d;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Go to premium page
+  var button = document.getElementById("premium");
+  button.addEventListener("click", function() {
+    chrome.tabs.create({url: chrome.extension.getURL("graph.html")});
+  })
+  // Delete all cookies
+  var buttonTwo = document.getElementById("delete");
+  buttonTwo.addEventListener("click", function() {
+    chrome.cookies.getAll({}, function(cookie) {
+      for (c in cookie) {
+        chrome.cookies.remove({"url": "https://" + cookie[c]["domain"] + cookie[c]["path"], "name": cookie[c]["name"]});
+      }
+    });
+  })
+});
+
+// Get all cookie and history data from the browser
+
+var totalData = {"history": [], "cookies": []};
+
+// chrome.history.search({text: ''}, function(data) {
+//     data.forEach(function(page) {
+//       totalData.history.push({"id": page.id,
+//         "url": page.url,
+//         "title": page.title,
+//         "lastVisitTime": page.lastVisitTime,
+//         "visitCount": page.visitCount,
+//         "typedCount": page.typedCount
+//       });
+//     });
+//     chrome.cookies.getAll({}, function(cookie) {
+//       totalData.cookies = cookie;
+      
+//       chrome.runtime.sendMessage(totalData, function(response) {
+//         var http = new XMLHttpRequest();
+//         http.open("POST", "http://localhost:8000/interface.php", true);
+//         http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//         var conv = new String(response);
+//         http.send(JSON.stringify(totalData));
+
+//         console.log(http.responseText);
+//       });
+//     });
+
+//     console.log(totalData);
+// });
